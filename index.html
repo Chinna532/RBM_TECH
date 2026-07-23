@@ -1,0 +1,1318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      RBM Technology | Enterprise Web Engineering & Automated Solutions
+    </title>
+    <style>
+      :root {
+        --bg-dark: #0f172a;
+        --card-bg: #1e293b;
+        --card-hover: #24334a;
+        --accent: #0284c7;
+        --accent-light: #38bdf8;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --border: #334155;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-main);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Header Navigation & Logo */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 8%;
+        background: rgba(15, 23, 42, 0.95);
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        z-index: 1000;
+      }
+
+      .brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+
+      .logo-icon {
+        width: 38px;
+        height: 38px;
+        background: linear-gradient(135deg, var(--accent-light), var(--accent));
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+      }
+
+      .logo-icon svg {
+        width: 22px;
+        height: 22px;
+        fill: #0f172a;
+      }
+
+      .logo-text {
+        font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+        font-weight: 800;
+        color: var(--text-main);
+        letter-spacing: 0.5px;
+      }
+
+      .logo-text span {
+        color: var(--accent-light);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+      }
+
+      nav a {
+        color: var(--text-main);
+        text-decoration: none;
+        margin-left: 1.5rem;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: var(--accent-light);
+      }
+
+      .nav-btn {
+        background: var(--accent);
+        padding: 0.5rem 1.2rem;
+        border-radius: 6px;
+        color: #fff !important;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+        z-index: 1001;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-main);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      section {
+        padding: clamp(3rem, 6vw, 5rem) 8%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: clamp(1.8rem, 4vw, 2.2rem);
+        margin-bottom: 0.5rem;
+      }
+
+      .section-subtitle {
+        text-align: center;
+        color: var(--text-muted);
+        margin-bottom: clamp(2rem, 4vw, 3rem);
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      /* Hero Section */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(1.5rem, 4vw, 3rem);
+        align-items: center;
+        padding-top: clamp(3rem, 6vw, 6rem);
+        padding-bottom: 3rem;
+      }
+
+      .hero-text h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        line-height: 1.2;
+        margin-bottom: 1.2rem;
+        background: linear-gradient(135deg, #38bdf8, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero-text p {
+        font-size: clamp(1rem, 2.5vw, 1.15rem);
+        color: var(--text-muted);
+        margin-bottom: 2rem;
+      }
+
+      /* Slider */
+      .slider-container {
+        position: relative;
+        width: 100%;
+        height: clamp(240px, 35vw, 380px);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        background: var(--card-bg);
+      }
+
+      .slider {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .slide {
+        min-width: 100%;
+        height: 100%;
+        position: relative;
+      }
+
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .slide-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.8rem;
+        background: linear-gradient(transparent, rgba(15, 23, 42, 0.95));
+        color: #fff;
+        font-size: clamp(0.85rem, 2vw, 1rem);
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(15, 23, 42, 0.7);
+        color: #fff;
+        border: 1px solid var(--border);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        transition: background 0.3s;
+        z-index: 10;
+      }
+
+      .slider-btn:hover {
+        background: var(--accent);
+      }
+
+      .prev-btn {
+        left: 10px;
+      }
+      .next-btn {
+        right: 10px;
+      }
+
+      .slider-dots {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        cursor: pointer;
+        transition:
+          background 0.3s,
+          transform 0.3s;
+      }
+
+      .dot.active {
+        background: var(--accent-light);
+        transform: scale(1.2);
+      }
+
+      /* --- STABLE GLITCH-PROOF SERVICES CARDS --- */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        align-items: stretch;
+      }
+
+      .service-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        will-change: transform;
+      }
+
+      .service-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--accent-light);
+        background: var(--card-hover);
+        box-shadow: 0 12px 30px rgba(2, 132, 199, 0.25);
+      }
+
+      /* Prevents layout shift while image loads */
+      .service-img-wrapper {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #1e293b linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        overflow: hidden;
+      }
+
+      .service-img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+        backface-visibility: hidden;
+      }
+
+      .service-card:hover .service-img-wrapper img {
+        transform: scale(1.06);
+      }
+
+      .service-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(2, 132, 199, 0.9);
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 20px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        z-index: 2;
+      }
+
+      .service-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      .service-content h3 {
+        color: var(--accent-light);
+        margin-bottom: 0.6rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .service-content p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.5;
+        flex-grow: 1;
+      }
+
+      .service-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: auto;
+      }
+
+      .service-tag {
+        background: rgba(56, 189, 248, 0.1);
+        color: var(--accent-light);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        font-size: 0.75rem;
+        padding: 3px 8px;
+        border-radius: 4px;
+      }
+
+      /* Metrics & Stats */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .stat-card {
+        background: var(--card-bg);
+        padding: 1.2rem;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        text-align: center;
+      }
+
+      .stat-card h3 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        color: var(--accent-light);
+      }
+
+      .stat-card p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .portfolio-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition:
+          transform 0.3s,
+          border-color 0.3s;
+      }
+
+      .portfolio-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-light);
+      }
+
+      .portfolio-card .img-container {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #1e293b;
+      }
+
+      .portfolio-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .portfolio-info {
+        padding: 1.2rem;
+      }
+
+      .portfolio-info h4 {
+        color: var(--accent-light);
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .portfolio-info p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      .tech-grid,
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.2rem;
+      }
+
+      .tech-box,
+      .process-step {
+        background: var(--card-bg);
+        padding: 1.2rem;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+      }
+
+      .process-step {
+        border-left: 4px solid var(--accent-light);
+      }
+
+      .tech-box h4,
+      .process-step h4 {
+        color: var(--accent-light);
+        margin-bottom: 0.4rem;
+      }
+
+      .tech-box p,
+      .process-step p {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .pricing-card {
+        background: var(--card-bg);
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+
+      .pricing-card.popular {
+        border-color: var(--accent-light);
+        position: relative;
+      }
+
+      .pricing-card.popular::before {
+        content: "MOST POPULAR";
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--accent);
+        color: #fff;
+        padding: 2px 12px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        border-radius: 12px;
+      }
+
+      .pricing-card ul {
+        list-style: none;
+        margin: 1.2rem 0;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      .pricing-card ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .faq-item {
+        background: var(--card-bg);
+        padding: 1.2rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        border: 1px solid var(--border);
+      }
+
+      .faq-item h4 {
+        color: var(--accent-light);
+        margin-bottom: 0.4rem;
+        font-size: 1rem;
+      }
+
+      .faq-item p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      .contact-form {
+        background-color: var(--card-bg);
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 1.2rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.4rem;
+        font-size: 0.88rem;
+        color: var(--text-muted);
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.75rem;
+        background: var(--bg-dark);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        color: #fff;
+        outline: none;
+        font-size: 0.95rem;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: var(--accent);
+        color: #fff;
+        padding: 0.8rem 1.6rem;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s;
+        text-align: center;
+      }
+
+      .btn:hover {
+        background-color: var(--accent-light);
+        color: var(--bg-dark);
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 8%;
+        border-top: 1px solid var(--border);
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 900px) {
+        .hero,
+        .about-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .hero-text {
+          order: 1;
+        }
+        .slider-container {
+          order: 2;
+        }
+        .hamburger {
+          display: flex;
+        }
+
+        nav {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: rgba(15, 23, 42, 0.98);
+          flex-direction: column;
+          padding: 1.5rem 0;
+          border-bottom: 1px solid var(--border);
+          transform: translateY(-150%);
+          transition: transform 0.3s ease-in-out;
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        nav.active {
+          transform: translateY(0);
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        nav a {
+          margin: 0.8rem 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        section {
+          padding: 2.5rem 5%;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .slider-btn {
+          width: 30px;
+          height: 30px;
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Navigation with Brand Logo -->
+    <header>
+      <a href="#home" class="brand-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        <div class="logo-text">RBM <span>Technology</span></div>
+      </a>
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <nav id="navMenu">
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#services" onclick="closeMenu()">Services</a>
+        <a href="#portfolio" onclick="closeMenu()">Projects</a>
+        <a href="#tech" onclick="closeMenu()">Technologies</a>
+        <a href="#packages" onclick="closeMenu()">Packages</a>
+        <a href="#contact" class="nav-btn" onclick="closeMenu()">Get Started</a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <h1>Custom Web Engineering & Full-Stack Solutions</h1>
+        <p>
+          RBM Technology builds ultra-fast websites, modern Web APIs, and
+          scalable Node.js applications tailored for modern businesses and
+          enterprise growth.
+        </p>
+        <a href="#contact" class="btn">Start Your Web Project</a>
+      </div>
+
+      <div class="slider-container">
+        <div class="slider" id="slider">
+          <div class="slide">
+            <img
+              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+              alt="Responsive Web Development"
+              loading="eager"
+              decoding="async"
+              onerror="this.parentElement.style.background = '#1e293b'"
+            />
+            <div class="slide-caption">
+              Modern Responsive Web Development & UI Design
+            </div>
+          </div>
+          <div class="slide">
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+              alt="Full Stack Web Apps"
+              loading="lazy"
+              decoding="async"
+              onerror="this.parentElement.style.background = '#1e293b'"
+            />
+            <div class="slide-caption">
+              Full-Stack Web Applications & Node.js Architecture
+            </div>
+          </div>
+          <div class="slide">
+            <img
+              src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+              alt="RESTful APIs & Messaging"
+              loading="lazy"
+              decoding="async"
+              onerror="this.parentElement.style.background = '#1e293b'"
+            />
+            <div class="slide-caption">
+              RESTful API Integration & Automated Backends
+            </div>
+          </div>
+        </div>
+
+        <button class="slider-btn prev-btn" onclick="prevSlide()">
+          &#10094;
+        </button>
+        <button class="slider-btn next-btn" onclick="nextSlide()">
+          &#10095;
+        </button>
+
+        <div class="slider-dots">
+          <span class="dot active" onclick="goToSlide(0)"></span>
+          <span class="dot" onclick="goToSlide(1)"></span>
+          <span class="dot" onclick="goToSlide(2)"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics -->
+    <section style="padding-top: 0">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>99.9%</h3>
+          <p>Uptime & Reliability</p>
+        </div>
+        <div class="stat-card">
+          <h3>SEO First</h3>
+          <p>Search & Speed Optimized</p>
+        </div>
+        <div class="stat-card">
+          <h3>Custom API</h3>
+          <p>WhatsApp & Email Integration</p>
+        </div>
+        <div class="stat-card">
+          <h3>24/7</h3>
+          <p>Technical Maintenance</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2 class="section-title">About RBM Technology</h2>
+      <p class="section-subtitle">
+        Bridging full-stack software development and automated business
+        infrastructure
+      </p>
+      <div class="about-grid">
+        <div>
+          <p style="color: var(--text-muted); margin-bottom: 1rem">
+            RBM Technology specializes in building robust web applications,
+            booking portals, and integration systems. We focus on creating
+            reliable digital platforms that eliminate manual overhead through
+            seamless API integrations.
+          </p>
+          <p style="color: var(--text-muted)">
+            From Node.js backend development to automated WhatsApp notifications
+            and payment gateway setups, we deliver scalable web systems tailored
+            to your operational goals.
+          </p>
+        </div>
+        <div
+          class="service-img-wrapper"
+          style="border-radius: 12px; border: 1px solid var(--border)"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+            alt="Team Workstation"
+            loading="lazy"
+            decoding="async"
+            onerror="this.style.display = 'none'"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- STABLE & OPTIMIZED SERVICES SECTION -->
+    <section id="services">
+      <h2 class="section-title">Our Core Engineering Services</h2>
+      <p class="section-subtitle">
+        End-to-end digital capabilities designed to accelerate modern business
+        operations
+      </p>
+
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <span class="service-badge">Full-Stack</span>
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+              alt="Custom Web App Development"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.opacity = '0'"
+            />
+          </div>
+          <div class="service-content">
+            <h3>Custom Web App Development</h3>
+            <p>
+              Scalable web platforms, customer dashboards, and custom management
+              applications built with Node.js, Express, and modern JavaScript
+              frameworks.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">Node.js</span>
+              <span class="service-tag">Express</span>
+              <span class="service-tag">REST APIs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <span class="service-badge">Automations</span>
+            <img
+              src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+              alt="WhatsApp & Email Automations"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.opacity = '0'"
+            />
+          </div>
+          <div class="service-content">
+            <h3>WhatsApp & Email Automations</h3>
+            <p>
+              Automated messaging workflows that trigger real-time WhatsApp
+              alerts, payment receipts, booking receipts, and auto-reply emails
+              via Twilio and Nodemailer.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">Twilio API</span>
+              <span class="service-tag">Nodemailer</span>
+              <span class="service-tag">SMS Triggers</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <span class="service-badge">eCommerce</span>
+            <img
+              src="https://images.unsplash.com/photo-1556742049-0a67568d0d9f?auto=format&fit=crop&w=800&q=80"
+              alt="eCommerce & Merchant Portals"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.opacity = '0'"
+            />
+          </div>
+          <div class="service-content">
+            <h3>eCommerce & Merchant Portals</h3>
+            <p>
+              High-converting online store platforms featuring secure payment
+              gateways, inventory tracking, customer dashboards, and automated
+              checkout processes.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">Payments</span>
+              <span class="service-tag">Cart Engines</span>
+              <span class="service-tag">Security</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <span class="service-badge">Bookings</span>
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+              alt="Booking & Reservation Engines"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.opacity = '0'"
+            />
+          </div>
+          <div class="service-content">
+            <h3>Booking & Reservation Engines</h3>
+            <p>
+              Real-time slot reservation platforms, ground/venue booking
+              portals, and scheduling tools integrated with dynamic conflict
+              prevention and calendar triggers.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">Slot Logic</span>
+              <span class="service-tag">Calendar Sync</span>
+              <span class="service-tag">Real-Time</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <span class="service-badge">Hardware</span>
+            <img
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+              alt="Smart Control & Electrical Systems"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.opacity = '0'"
+            />
+          </div>
+          <div class="service-content">
+            <h3>Smart Control & Electrical Dashboards</h3>
+            <p>
+              Custom digital monitoring tools, panel control automation,
+              electrical wiring dashboards, and quotation engines for commercial
+              installations.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">Control Panels</span>
+              <span class="service-tag">Motor Wiring</span>
+              <span class="service-tag">Monitoring</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <span class="service-badge">Cloud</span>
+            <img
+              src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80"
+              alt="Cloud Deployment & Maintenance"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.opacity = '0'"
+            />
+          </div>
+          <div class="service-content">
+            <h3>Cloud Deployment & Maintenance</h3>
+            <p>
+              End-to-end cloud hosting, Netlify & Render deployment
+              configuration, SSL security active monitoring, and 24/7 technical
+              server maintenance.
+            </p>
+            <div class="service-tags">
+              <span class="service-tag">Netlify / Render</span>
+              <span class="service-tag">SSL</span>
+              <span class="service-tag">24/7 Support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section id="portfolio">
+      <h2 class="section-title">Featured Solutions</h2>
+      <p class="section-subtitle">
+        A glimpse into systems and platforms engineered by RBM Technology
+      </p>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <div class="img-container">
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+              alt="Booking Dashboard"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.opacity = '0'"
+            />
+          </div>
+          <div class="portfolio-info">
+            <h4>Ground Booking Engine</h4>
+            <p>
+              Real-time slot reservation system with automated Twilio WhatsApp &
+              Nodemailer confirmations.
+            </p>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <div class="img-container">
+            <img
+              src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80"
+              alt="Corporate Portal"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.opacity = '0'"
+            />
+          </div>
+          <div class="portfolio-info">
+            <h4>Enterprise Corporate Portal</h4>
+            <p>
+              High-speed, SEO-ready corporate web platform with role-based CMS
+              management.
+            </p>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <div class="img-container">
+            <img
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
+              alt="Smart Control System"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.opacity = '0'"
+            />
+          </div>
+          <div class="portfolio-info">
+            <h4>Smart Control Integration</h4>
+            <p>
+              Automated monitoring system and quotation tools for electrical and
+              commercial setups.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="tech">
+      <h2 class="section-title">Technology Stack</h2>
+      <p class="section-subtitle">
+        Modern frameworks powering our secure architectures
+      </p>
+
+      <div class="tech-grid">
+        <div class="tech-box">
+          <h4>Frontend Architecture</h4>
+          <p>HTML5, CSS3, JavaScript (ES6+), React, Responsive UI/UX</p>
+        </div>
+        <div class="tech-box">
+          <h4>Backend & APIs</h4>
+          <p>Node.js, Express.js, RESTful APIs, JWT Authentication</p>
+        </div>
+        <div class="tech-box">
+          <h4>Messaging Systems</h4>
+          <p>Twilio WhatsApp API, Nodemailer, Custom SMTP Servers</p>
+        </div>
+        <div class="tech-box">
+          <h4>Infrastructure</h4>
+          <p>Netlify, Render, Railway, AWS EC2, SSL Encryption</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Development Roadmap -->
+    <section id="process">
+      <h2 class="section-title">Development Roadmap</h2>
+      <p class="section-subtitle">
+        Our structured approach from initial idea to live cloud deployment
+      </p>
+
+      <div class="process-grid">
+        <div class="process-step">
+          <h4>01. Discovery</h4>
+          <p>
+            We analyze your business goals, user pathways, and technical needs.
+          </p>
+        </div>
+        <div class="process-step">
+          <h4>02. Architecture</h4>
+          <p>
+            Designing mobile-first layouts and structuring backend API routes.
+          </p>
+        </div>
+        <div class="process-step">
+          <h4>03. Engineering</h4>
+          <p>Writing clean, maintainable code and connecting automated APIs.</p>
+        </div>
+        <div class="process-step">
+          <h4>04. Launch</h4>
+          <p>
+            Deploying on cloud servers with active SSL and speed optimization.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Packages -->
+    <section id="packages">
+      <h2 class="section-title">Development Packages</h2>
+      <p class="section-subtitle">
+        Transparent pricing tailored to fit your project scope
+      </p>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Starter Site</h3>
+          <p style="color: var(--text-muted)">
+            Ideal for establishing an online presence.
+          </p>
+          <ul>
+            <li>✓ 5-7 Page Custom Responsive Site</li>
+            <li>✓ Mobile-First Optimization</li>
+            <li>✓ Contact Form Setup</li>
+            <li>✓ Basic SEO & Performance Tuning</li>
+          </ul>
+          <a href="#contact" class="btn" style="width: 100%">Select Starter</a>
+        </div>
+
+        <div class="pricing-card popular">
+          <h3>Custom Web App</h3>
+          <p style="color: var(--text-muted)">
+            Ideal for automated business operations.
+          </p>
+          <ul>
+            <li>✓ Custom Application Architecture</li>
+            <li>✓ Node.js / Express Server Backend</li>
+            <li>✓ Automated WhatsApp / Email API</li>
+            <li>✓ Database & Admin Dashboard</li>
+          </ul>
+          <a href="#contact" class="btn" style="width: 100%">Select Web App</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>eCommerce & Portal</h3>
+          <p style="color: var(--text-muted)">
+            High-volume online transactional stores.
+          </p>
+          <ul>
+            <li>✓ Product Catalog / Learning Portals</li>
+            <li>✓ Payment Gateway Integration</li>
+            <li>✓ Customer Account Dashboards</li>
+            <li>✓ Priority 24/7 Technical Support</li>
+          </ul>
+          <a href="#contact" class="btn" style="width: 100%"
+            >Select eCommerce</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">
+        Clear answers to standard project questions
+      </p>
+
+      <div class="faq-item">
+        <h4>How long does it take to deploy a custom web application?</h4>
+        <p>
+          Corporate websites typically take 1 to 2 weeks, while custom Node.js
+          applications or booking engines take 3 to 5 weeks depending on
+          requirements.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h4>
+          Can RBM Technology set up automated WhatsApp and Email receipts?
+        </h4>
+        <p>
+          Yes! We integrate Twilio and Nodemailer directly with your website
+          form submissions to dispatch real-time alerts to customers and admins.
+        </p>
+      </div>
+      <div class="faq-item">
+        <h4>Will my platform work across mobile devices?</h4>
+        <p>
+          Every platform engineered by RBM Technology uses responsive CSS
+          architecture, ensuring seamless layout adjustment on mobile phones,
+          tablets, and desktops.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="section-title">Start Your Project With RBM Technology</h2>
+      <p class="section-subtitle">
+        Send us your project details for a prompt quote and strategy session
+      </p>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="name">Your Name *</label>
+          <input type="text" id="name" required placeholder="John Doe" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input
+            type="email"
+            id="email"
+            required
+            placeholder="john@example.com"
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone / WhatsApp Number *</label>
+          <input type="tel" id="phone" required placeholder="+91 9876543210" />
+        </div>
+        <div class="form-group">
+          <label for="service">Select Service *</label>
+          <select id="service">
+            <option>Corporate Website Development</option>
+            <option>Custom Web Application (Node.js/Express)</option>
+            <option>eCommerce Store Development</option>
+            <option>WhatsApp & Email API Automations</option>
+            <option>Smart Control & Electrical System Dashboard</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Project Requirements *</label>
+          <textarea
+            id="message"
+            required
+            placeholder="Describe your project goals or specific requirements..."
+          ></textarea>
+        </div>
+        <button type="submit" class="btn" style="width: 100%">
+          Submit Inquiry
+        </button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2026 RBM Technology. Built for Performance & Scalability.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("navMenu");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+
+      function closeMenu() {
+        navMenu.classList.remove("active");
+      }
+
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+      const slider = document.getElementById("slider");
+      const totalSlides = slides.length;
+
+      function updateSlider() {
+        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === currentSlide);
+        });
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+      }
+
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+      }
+
+      function goToSlide(index) {
+        currentSlide = index;
+        updateSlider();
+      }
+
+      setInterval(nextSlide, 4000);
+
+      document.getElementById("contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert(
+          "Thank you! Your project details have been successfully submitted to RBM Technology.",
+        );
+        e.target.reset();
+      });
+    </script>
+  </body>
+</html>
