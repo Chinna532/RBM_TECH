@@ -549,6 +549,42 @@
         color: var(--text-muted);
       }
 
+      /* Hiring Banner */
+      .hiring-banner {
+        background: linear-gradient(
+          135deg,
+          rgba(2, 132, 199, 0.1),
+          rgba(15, 23, 42, 0.8)
+        );
+        border: 1px solid var(--accent);
+        border-radius: 12px;
+        padding: clamp(2rem, 5vw, 3rem);
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto;
+        box-shadow: 0 0 20px rgba(2, 132, 199, 0.15);
+      }
+
+      .hiring-banner h2 {
+        color: var(--accent-light);
+        font-size: clamp(1.8rem, 4vw, 2.2rem);
+        margin-bottom: 1rem;
+      }
+
+      .hiring-banner p {
+        color: var(--text-main);
+        font-size: 1.05rem;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .hiring-contacts {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
       /* Social Links */
       .social-links-grid {
         display: flex;
@@ -876,8 +912,8 @@
         <a href="#about" onclick="closeMenu()">About</a>
         <a href="#services" onclick="closeMenu()">Services</a>
         <a href="#portfolio" onclick="closeMenu()">Projects</a>
-        <a href="#tech" onclick="closeMenu()">Technologies</a>
         <a href="#packages" onclick="closeMenu()">Packages</a>
+        <a href="#careers" onclick="closeMenu()">Careers</a>
         <a href="#contact" class="nav-btn" onclick="closeMenu()">Get Started</a>
       </nav>
     </header>
@@ -1403,6 +1439,58 @@
       </div>
     </section>
 
+    <!-- Careers / Hiring Banner -->
+    <section id="careers">
+      <div class="hiring-banner">
+        <h2>We Are Hiring!</h2>
+        <p>
+          If you have an interest in joining our dynamic team and building
+          scalable enterprise solutions, we would love to hear from you. Please
+          contact us directly!
+        </p>
+
+        <div class="hiring-contacts">
+          <a
+            href="tel:+919392403845"
+            class="btn"
+            style="display: flex; align-items: center; gap: 8px"
+          >
+            <svg
+              style="width: 20px; height: 20px; fill: currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+              />
+            </svg>
+            +91 9392403845
+          </a>
+          <a
+            href="mailto:rajeshbanoth2002@gmail.com"
+            class="btn"
+            style="
+              background-color: transparent;
+              border: 2px solid var(--accent-light);
+              color: var(--text-main);
+              display: flex;
+              align-items: center;
+              gap: 8px;
+            "
+          >
+            <svg
+              style="width: 20px; height: 20px; fill: currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+              />
+            </svg>
+            rajeshbanoth2002@gmail.com
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- Contact & Social Media Section -->
     <section id="contact">
       <h2 class="section-title">Start Your Project With RBM Technology</h2>
@@ -1425,7 +1513,6 @@
           WhatsApp: +91 9392403845
         </a>
 
-        <!-- UPDATED DIRECT INSTAGRAM LINK -->
         <a
           href="https://www.instagram.com/rbm0532?igsh=MXFmZ2pmcW9wdzJsag=="
           target="_blank"
@@ -1458,7 +1545,7 @@
         </a>
       </div>
 
-      <!-- Contact Form -->
+      <!-- Contact Form handled entirely in-page without redirects -->
       <form class="contact-form" id="contactForm">
         <div class="form-group">
           <label for="name">Your Name *</label>
@@ -1545,6 +1632,7 @@
             <li><a href="#services">Our Services</a></li>
             <li><a href="#portfolio">Projects</a></li>
             <li><a href="#packages">Pricing & Packages</a></li>
+            <li><a href="#careers">Careers (We're Hiring)</a></li>
           </ul>
         </div>
 
@@ -1606,7 +1694,6 @@
               />
             </svg>
           </a>
-          <!-- UPDATED FOOTER INSTAGRAM LINK -->
           <a
             href="https://www.instagram.com/rbm0532?igsh=MXFmZ2pmcW9wdzJsag=="
             target="_blank"
