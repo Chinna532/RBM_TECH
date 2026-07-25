@@ -715,24 +715,97 @@
       </div>
     </section>
 
-    <!-- Careers / Hiring Banner -->
+    <!-- Careers / Hiring Banner & Resume Submission Form -->
     <section id="careers">
       <div class="hiring-banner">
         <h2>We Are Hiring!</h2>
         <p>
-          If you have an interest in joining our dynamic team and building
-          scalable enterprise solutions, we would love to hear from you. Please
-          contact us directly!
+          We are always looking for passionate engineers and web creators to
+          join our team. Submit your details and resume below!
         </p>
 
-        <div class="hiring-contacts">
+        <!-- Dynamic Resume Submission Form handled strictly with JS -->
+        <form class="resume-form" id="resumeForm">
+          <div class="form-group">
+            <label for="applicantName">Full Name *</label>
+            <input
+              type="text"
+              id="applicantName"
+              required
+              placeholder="e.g. Rahul Sharma"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="applicantRole">Role Applying For *</label>
+            <select id="applicantRole" required>
+              <option value="Front End Developer">Front End Developer</option>
+              <option value="Full-Stack Engineer">Full-Stack Engineer</option>
+              <option value="Backend Developer">Backend Developer</option>
+              <option value="UI/UX Designer">UI/UX Designer</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="applicantPhone">Phone / WhatsApp Number *</label>
+            <input
+              type="tel"
+              id="applicantPhone"
+              required
+              placeholder="+91 9392403845"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="applicantEmail">Email Address *</label>
+            <input
+              type="email"
+              id="applicantEmail"
+              required
+              placeholder="you@example.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="resumeLink">Resume Drive Link / Portfolio URL *</label>
+            <input
+              type="url"
+              id="resumeLink"
+              required
+              placeholder="https://drive.google.com/your-resume-link"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="submissionChannel">Send Resume via *</label>
+            <select id="submissionChannel" required>
+              <option value="whatsapp">WhatsApp Application</option>
+              <option value="email">Direct Email Application</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            class="btn"
+            style="width: 100%; margin-top: 1rem"
+          >
+            Submit Resume Now
+          </button>
+        </form>
+
+        <div style="margin-top: 2rem" class="hiring-contacts">
           <a
             href="tel:+919392403845"
             class="btn"
-            style="display: flex; align-items: center; gap: 8px"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              font-size: 0.9rem;
+            "
           >
             <svg
-              style="width: 20px; height: 20px; fill: currentColor"
+              style="width: 18px; height: 18px; fill: currentColor"
               viewBox="0 0 24 24"
             >
               <path
@@ -751,10 +824,11 @@
               display: flex;
               align-items: center;
               gap: 8px;
+              font-size: 0.9rem;
             "
           >
             <svg
-              style="width: 20px; height: 20px; fill: currentColor"
+              style="width: 18px; height: 18px; fill: currentColor"
               viewBox="0 0 24 24"
             >
               <path
