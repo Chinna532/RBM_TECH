@@ -421,6 +421,8 @@
         transition:
           transform 0.3s,
           border-color 0.3s;
+        display: flex;
+        flex-direction: column;
       }
 
       .portfolio-card:hover {
@@ -443,6 +445,9 @@
 
       .portfolio-info {
         padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
       }
 
       .portfolio-info h4 {
@@ -454,6 +459,27 @@
       .portfolio-info p {
         color: var(--text-muted);
         font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .portfolio-btn {
+        margin-top: auto;
+        display: inline-block;
+        background: rgba(56, 189, 248, 0.1);
+        color: var(--accent-light);
+        border: 1px solid var(--accent);
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .portfolio-btn:hover {
+        background: var(--accent);
+        color: #fff;
       }
 
       .tech-grid,
@@ -1232,60 +1258,166 @@
       </p>
 
       <div class="portfolio-grid">
+        <!-- 1. BabuRao Grounds -->
         <div class="portfolio-card">
           <div class="img-container">
             <img
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
-              alt="Booking Dashboard"
+              src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=600&q=80"
+              alt="BabuRao Grounds Booking Portal"
               loading="lazy"
               decoding="async"
               onerror="this.style.opacity = '0'"
             />
           </div>
           <div class="portfolio-info">
-            <h4>Ground Booking Engine</h4>
+            <h4>BabuRao Grounds Portal</h4>
             <p>
-              Real-time slot reservation system with automated Twilio WhatsApp &
-              Nodemailer confirmations.
+              Interactive ground booking application featuring sports venue
+              reservation, live slot availability, and instant booking
+              workflows.
             </p>
+            <a
+              href="https://chinna532.github.io/BabuRao_Grounds/"
+              target="_blank"
+              class="portfolio-btn"
+            >
+              View Live Site &rarr;
+            </a>
           </div>
         </div>
 
+        <!-- 2. Invoice Billing Engine -->
         <div class="portfolio-card">
           <div class="img-container">
             <img
-              src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80"
-              alt="Corporate Portal"
+              src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80"
+              alt="Smart Invoice Generator"
               loading="lazy"
               decoding="async"
               onerror="this.style.opacity = '0'"
             />
           </div>
           <div class="portfolio-info">
-            <h4>Enterprise Corporate Portal</h4>
+            <h4>Smart Invoice Generator</h4>
             <p>
-              High-speed, SEO-ready corporate web platform with role-based CMS
-              management.
+              Automated invoice generation web application for client billing,
+              itemized quotes, and quick calculations.
             </p>
+            <a
+              href="https://chinna532.github.io/Invoice/"
+              target="_blank"
+              class="portfolio-btn"
+            >
+              View Live Site &rarr;
+            </a>
           </div>
         </div>
 
+        <!-- 3. Aqua Project -->
         <div class="portfolio-card">
           <div class="img-container">
             <img
-              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
-              alt="Smart Control System"
+              src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80"
+              alt="Aqua Solutions Web Portal"
               loading="lazy"
               decoding="async"
               onerror="this.style.opacity = '0'"
             />
           </div>
           <div class="portfolio-info">
-            <h4>Smart Control Integration</h4>
+            <h4>Aqua Solutions Web Portal</h4>
             <p>
-              Automated monitoring system and quotation tools for electrical and
-              commercial setups.
+              Commercial water fountain systems and pump service booking
+              platform engineered with dynamic product catalogs.
             </p>
+            <a
+              href="https://chinna532.github.io/Aqua-Project1/"
+              target="_blank"
+              class="portfolio-btn"
+            >
+              View Live Site &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Animated Login Form -->
+        <div class="portfolio-card">
+          <div class="img-container">
+            <img
+              src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80"
+              alt="Animated Login Interface"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.opacity = '0'"
+            />
+          </div>
+          <div class="portfolio-info">
+            <h4>Animated Interactive Auth Form</h4>
+            <p>
+              Modern interactive authentication portal crafted with smooth CSS
+              animations and responsive front-end design.
+            </p>
+            <a
+              href="https://chinna532.github.io/Animated-Login-Form/"
+              target="_blank"
+              class="portfolio-btn"
+            >
+              View Live Site &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. New Year Celebration -->
+        <div class="portfolio-card">
+          <div class="img-container">
+            <img
+              src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80"
+              alt="Interactive Web Showcase"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.opacity = '0'"
+            />
+          </div>
+          <div class="portfolio-info">
+            <h4>Interactive Celebration Page</h4>
+            <p>
+              Engaging event experience platform featuring interactive
+              animations and dynamic UI components.
+            </p>
+            <a
+              href="https://chinna532.github.io/NewYear/"
+              target="_blank"
+              class="portfolio-btn"
+            >
+              View Live Site &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 6. Appliquo Project -->
+        <div class="portfolio-card">
+          <div class="img-container">
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+              alt="Appliquo Tech Solution Portal"
+              loading="lazy"
+              decoding="async"
+              onerror="this.style.opacity = '0'"
+            />
+          </div>
+          <div class="portfolio-info">
+            <h4>Appliquo Web Solution</h4>
+            <p>
+              Responsive web platform built for modern product showcase,
+              streamlined workflow presentation, and client engagement.
+            </p>
+            <a
+              href="https://chinna532.github.io/Aplliquo-Project/"
+              target="_blank"
+              class="portfolio-btn"
+            >
+              View Live Site &rarr;
+            </a>
           </div>
         </div>
       </div>
